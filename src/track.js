@@ -128,6 +128,33 @@ var renderSlides = function (spec) {
           onClick
         }));
       }
+
+      if (spec.slidesToPeek) {
+        var peekCount = spec.slidesToPeek;
+
+        if ((index >= infiniteCount) && (index < infiniteCount + peekCount)) {
+          key = count + infiniteCount + index;
+          postCloneSlides.push(React.cloneElement(child, {
+            key: 'postpeekcloned' + getKey(child, key),
+            'data-index': key,
+            className: cssClasses,
+            style: assign({}, child.props.style || {}, childStyle),
+            onClick
+          }));
+        }
+
+        var startPeekEndIndex = count - infiniteCount - peekCount;
+        if ((index >= startPeekEndIndex) && (index < startPeekEndIndex + peekCount)) {
+          key = -(count - index);
+          preCloneSlides.push(React.cloneElement(child, {
+            key: 'prepeekcloned' + getKey(child, key),
+            'data-index': key,
+            className: cssClasses,
+            style: assign({}, child.props.style || {}, childStyle),
+            onClick
+          }));
+        }
+      }
     }
   });
 
