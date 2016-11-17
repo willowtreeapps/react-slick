@@ -20,6 +20,8 @@ export var getTrackCSS = function(spec) {
   if (!spec.vertical) {
     if (spec.variableWidth) {
       trackWidth = (spec.slideCount + 2*spec.slidesToShow) * spec.slideWidth;
+    } else if (spec.slidesToPeek) {
+      trackWidth = (spec.slideCount + 2*(spec.slidesToShow + spec.slidesToPeek)) * spec.slideWidth;
     } else if (spec.centerMode) {
       trackWidth = (spec.slideCount + 2*(spec.slidesToShow + 1)) * spec.slideWidth;
     } else {
@@ -73,7 +75,7 @@ export var getTrackAnimateCSS = function (spec) {
 export var getTrackLeft = function (spec) {
 
   checkSpecKeys(spec, [
-   'slideIndex', 'trackRef', 'infinite', 'centerMode', 'slideCount', 'slidesToShow',
+   'slideIndex', 'trackRef', 'infinite', 'centerMode', 'slideCount', 'slidesToPeek', 'slidesToShow',
    'slidesToScroll', 'slideWidth', 'listWidth', 'variableWidth', 'slideHeight']);
 
   var slideOffset = 0;
@@ -100,6 +102,9 @@ export var getTrackLeft = function (spec) {
             verticalOffset = ((spec.slideCount % spec.slidesToScroll) * spec.slideHeight) * -1;
           }
       }
+    }
+    if (spec.slidesToPeek) {
+      slideOffset += (spec.slideWidth * spec.slidesToPeek) * -1;
     }
   } else {
 
