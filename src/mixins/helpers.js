@@ -126,6 +126,14 @@ var helpers = {
     }
     return canGo;
   },
+  canGoPrev: function (opts){
+    var canGo = true;
+    if (!opts.infinite) {
+      canGo = opts.currentSlide !== 0 &&
+              opts.slideCount > opts.slidesToShow;
+    }
+    return canGo;
+  },
   slideHandler: function (index) {
     // Functionality of animateSlide and postSlide is merged into this function
     // console.log('slideHandler', index);
