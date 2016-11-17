@@ -107,7 +107,7 @@ var renderSlides = function (spec) {
     if (spec.infinite && spec.fade === false) {
       var infiniteCount = spec.variableWidth ? spec.slidesToShow + 1 : spec.slidesToShow;
 
-      if (index >= (count - infiniteCount)) {
+      if (spec.infiniteLeft && (index >= (count - infiniteCount))) {
         key = -(count - index);
         preCloneSlides.push(React.cloneElement(child, {
           key: 'precloned' + getKey(child, key),
@@ -144,7 +144,7 @@ var renderSlides = function (spec) {
         }
 
         var startPeekEndIndex = count - infiniteCount - peekCount;
-        if ((index >= startPeekEndIndex) && (index < startPeekEndIndex + peekCount)) {
+        if (spec.infiniteLeft && (index >= startPeekEndIndex) && (index < startPeekEndIndex + peekCount)) {
           key = -(count - index);
           preCloneSlides.push(React.cloneElement(child, {
             key: 'prepeekcloned' + getKey(child, key),
