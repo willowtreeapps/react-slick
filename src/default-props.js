@@ -21,6 +21,7 @@ var defaultProps = {
     fade: false,
     focusOnSelect: false,
     infinite: true,
+    infiniteLeft: true,
     initialSlide: 0,
     lazyLoad: false,
     pauseOnHover: true,
